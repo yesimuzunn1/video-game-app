@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_game_flutter_project/screens/home_page_screen.dart';
+import 'package:video_game_flutter_project/screens/game_detail_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePageScreen(title: 'Video Game Home Page'),
+      home: GameDetailScreen(),
+      // home: HomePageScreen(title: 'Video Game Home Page'),
     );
   }
 }
