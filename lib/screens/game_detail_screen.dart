@@ -1,6 +1,9 @@
+//Packages
 import 'package:flutter/material.dart';
 //Api
 import 'package:video_game_flutter_project/server/api/games_api.dart';
+//Styles
+import 'package:video_game_flutter_project/styles/styles.text.dart';
 
 class GameDetailScreen extends StatefulWidget {
   final String id;
@@ -58,7 +61,7 @@ class _GameDetailScreenState extends State<GameDetailScreen> {
                         child: Icon(
                           Icons.thumb_up,
                           size: 32,
-                          color: Colors.white,
+                          color: Colors.grey,
                         ),
                       ))
                     ]),
@@ -73,20 +76,34 @@ class _GameDetailScreenState extends State<GameDetailScreen> {
                           SizedBox(
                             height: 12.0,
                           ),
-                          Text(detailsOfVideoGame['name'].toString()),
+                          Text(
+                            detailsOfVideoGame['name'].toString(),
+                            style: mediumTextStyle(Colors.black87, fontSize: 22.0, fontWeight: FontWeight.w500),
+                          ),
                           SizedBox(
                             height: 12.0,
                           ),
-                          Text(detailsOfVideoGame['released'].toString()),
+                          Text(
+                            detailsOfVideoGame['released'].toString(),
+                            style: mediumTextStyle(Colors.black87, fontSize: 16.0, fontWeight: FontWeight.w500),
+                          ),
                           SizedBox(
                             height: 12.0,
                           ),
-                          Text(detailsOfVideoGame['metacritic'].toString()),
+                          Text(
+                            detailsOfVideoGame['metacritic'].toString(),
+                            style: mediumTextStyle(Colors.black87, fontSize: 16.0, fontWeight: FontWeight.w500),
+                          ),
                           SizedBox(
                             height: 12.0,
                           ),
                           Expanded(
-                            child: Padding(padding: const EdgeInsets.only(left: 8.0), child: Text(detailsOfVideoGame['description'].toString())),
+                            child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(
+                                  detailsOfVideoGame['description'].toString(),
+                                  style: mediumTextStyle(Colors.black87, fontSize: 16.0, fontWeight: FontWeight.w400),
+                                )),
                           ),
                         ],
                       ),

@@ -72,7 +72,7 @@ class _ListViewOfGamesState extends State<ListViewOfGames> {
                     child: Center(
                       child: Image.network(
                         videoGamesList[index]['background_image'],
-                        // fit: BoxFit.cover,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
