@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // home: GameDetailScreen(),
       home: HomePageScreen(title: 'Video Game Home Page'),
     );
   }
