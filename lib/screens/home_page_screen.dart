@@ -6,6 +6,8 @@ import 'package:video_game_flutter_project/styles/styles.text.dart';
 import 'package:video_game_flutter_project/widgets/search_bar.dart';
 import 'package:video_game_flutter_project/widgets/list_view_of_games.dart';
 import 'package:video_game_flutter_project/widgets/bottom_navigation_bar_items.dart';
+//Api
+import 'package:video_game_flutter_project/server/api/games_api.dart';
 
 class HomePageScreen extends StatefulWidget {
   final String title;
@@ -16,10 +18,59 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
+  List videoGamesList;
+  List foundGamesList;
+  String query = '';
+
+  var isLoaded = false;
+
+  @override
+  void initState() {
+    getData();
+
+    super.initState();
+    setState(() {
+      foundGamesList = videoGamesList;
+    });
+  }
+
+  getData() async {
+    videoGamesList = await GamesApi().getGamesList();
+    if (videoGamesList != null) {
+      setState(() {
+        isLoaded = true;
+      });
+    }
+  }
+
+  onSearch(String searchValue) {
+    if (searchValue.isNotEmpty) {
+      setState(() {
+        foundGamesList = videoGamesList.where((games) {
+          final name = games['name'].toString().toLowerCase();
+          final searchLower = searchValue.toLowerCase();
+          return name.contains(searchLower);
+        }).toList();
+        this.query = searchValue;
+        return foundGamesList;
+      });
+    } else {
+      setState(() {
+        return foundGamesList.clear();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: SearchBar()),
+      appBar: AppBar(
+          title: SearchBar(
+        videoGames: foundGamesList,
+        onSearch: (value) {
+          onSearch(value);
+        },
+      )),
       body: SingleChildScrollView(
         physics: ScrollPhysics(),
         child: Column(
@@ -35,7 +86,16 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 child: Center(child: Text('IMG', style: mediumTextStyle(Colors.white))),
               ),
             ),
-            ListViewOfGames()
+            Visibility(
+              visible: isLoaded,
+              replacement: Center(
+                child: CircularProgressIndicator(),
+              ),
+              child: ListViewOfGames(
+                videoGames: foundGamesList == null || foundGamesList.isEmpty ? videoGamesList : foundGamesList,
+                isLoaded: isLoaded,
+              ),
+            )
           ],
         ),
       ),

@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:video_game_flutter_project/styles/styles.text.dart';
 //Screens
 import 'package:video_game_flutter_project/screens/game_detail_screen.dart';
-//Api
-import 'package:video_game_flutter_project/server/api/games_api.dart';
 
 class ListViewOfGames extends StatefulWidget {
   final int itemCount;
   final String name;
+  final List videoGames;
+  final bool isLoaded;
 
-  const ListViewOfGames({Key key, this.itemCount, this.name}) : super(key: key);
+  const ListViewOfGames({Key key, this.itemCount, this.name, this.videoGames, this.isLoaded}) : super(key: key);
 
   @override
   _ListViewOfGamesState createState() => _ListViewOfGamesState();
@@ -20,36 +20,16 @@ class ListViewOfGames extends StatefulWidget {
 // List videoGamesList;
 
 class _ListViewOfGamesState extends State<ListViewOfGames> {
-  List videoGamesList;
-  List viewPager;
-  var isLoaded = false;
-
-  @override
-  void initState() {
-    getData();
-
-    super.initState();
-  }
-
-  getData() async {
-    videoGamesList = await GamesApi().getGamesList();
-    if (videoGamesList != null) {
-      setState(() {
-        isLoaded = true;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: isLoaded,
+      visible: widget.isLoaded,
       replacement: Center(
         child: CircularProgressIndicator(),
       ),
       child: ListView.builder(
         physics: NeverScrollableScrollPhysics(),
-        itemCount: videoGamesList?.length,
+        itemCount: widget.videoGames?.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return InkWell(
@@ -58,7 +38,7 @@ class _ListViewOfGamesState extends State<ListViewOfGames> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => GameDetailScreen(
-                          id: videoGamesList[index]['id'].toString(),
+                          id: widget.videoGames[index]['id'].toString(),
                         )),
               );
             },
@@ -72,7 +52,7 @@ class _ListViewOfGamesState extends State<ListViewOfGames> {
                     color: Colors.black,
                     child: Center(
                       child: Image.network(
-                        videoGamesList[index]['background_image'],
+                        widget.videoGames[index]['background_image'],
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -82,12 +62,12 @@ class _ListViewOfGamesState extends State<ListViewOfGames> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        videoGamesList[index]['name'],
+                        widget.videoGames[index]['name'],
                         style: mediumTextStyle(Colors.black87, fontSize: 22.0),
                       ),
                       SizedBox(height: 4),
                       Text(
-                        videoGamesList[index]['rating'].toString() + " - " + videoGamesList[index]['released'].toString(),
+                        widget.videoGames[index]['rating'].toString() + " - " + widget.videoGames[index]['released'].toString(),
                         style: mediumTextStyle(Colors.black87, fontSize: 22.0),
                       ),
                     ],

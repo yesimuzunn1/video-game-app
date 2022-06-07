@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:video_game_flutter_project/styles/styles.text.dart';
 
 class SearchBar extends StatefulWidget {
+  final List videoGames;
+  final Function(String value) onSearch;
+
+  const SearchBar({Key key, this.videoGames, this.onSearch}) : super(key: key);
   @override
   _SearchBarState createState() => _SearchBarState();
 }
@@ -20,7 +24,7 @@ class _SearchBarState extends State<SearchBar> {
       cursorColor: Colors.grey,
       controller: editingController,
       onChanged: (value) {
-        // onSearch(value);
+        widget.onSearch(value);
       },
       decoration: InputDecoration(
         hintText: 'Search',
@@ -28,18 +32,13 @@ class _SearchBarState extends State<SearchBar> {
         hintStyle: mediumTextStyle(
           Colors.redAccent,
         ),
-        suffixIcon: IconButton(
-            onPressed: () {
-              editingController.clear();
-            },
-            icon: Icon(
-              Icons.close,
-              color: Colors.redAccent,
-            )),
-        prefixIcon: IconButton(
-          iconSize: 24,
-          icon: Icon(Icons.search, color: Colors.redAccent),
-          onPressed: () {},
+        suffixIcon: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Icon(
+            Icons.search,
+            color: Colors.redAccent,
+            size: 28,
+          ),
         ),
       ),
     );
