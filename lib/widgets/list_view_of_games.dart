@@ -86,7 +86,7 @@ class _ListViewOfGamesState extends State<ListViewOfGames> {
                       ),
                       SizedBox(height: 4),
                       Text(
-                        videoGamesList[index]['rating'].toString() + videoGamesList[index]['released'].toString(),
+                        videoGamesList[index]['rating'].toString() + " - " + videoGamesList[index]['released'].toString(),
                         style: mediumTextStyle(Colors.black87, fontSize: 22.0),
                       ),
                     ],

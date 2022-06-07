@@ -38,6 +38,25 @@ class _HomePageScreenState extends State<HomePageScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: Container(
+        height: 50.0,
+        color: Colors.black87,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Icon(
+              Icons.home,
+              color: Colors.white,
+              size: 30,
+            ),
+            Icon(
+              Icons.favorite,
+              color: Colors.white,
+              size: 30,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
