@@ -21,6 +21,7 @@ class ListViewOfGames extends StatefulWidget {
 
 class _ListViewOfGamesState extends State<ListViewOfGames> {
   List videoGamesList;
+  List viewPager;
   var isLoaded = false;
 
   @override

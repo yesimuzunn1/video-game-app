@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:video_game_flutter_project/server/api/games_api.dart';
 //Styles
 import 'package:video_game_flutter_project/styles/styles.text.dart';
+//Widgets
+import 'package:video_game_flutter_project/widgets/bottom_navigation_bar_items.dart';
+//Screens
+import 'package:video_game_flutter_project/screens/home_page_screen.dart';
 
 class GameDetailScreen extends StatefulWidget {
   final String id;
@@ -112,6 +116,12 @@ class _GameDetailScreenState extends State<GameDetailScreen> {
                 ],
               ),
             ),
+            bottomNavigationBar: BottomNavigationBarItems(homePageButtonOntap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePageScreen()),
+              );
+            }),
           );
   }
 }

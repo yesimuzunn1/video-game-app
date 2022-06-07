@@ -5,6 +5,7 @@ import 'package:video_game_flutter_project/styles/styles.text.dart';
 //Widgets
 import 'package:video_game_flutter_project/widgets/search_bar.dart';
 import 'package:video_game_flutter_project/widgets/list_view_of_games.dart';
+import 'package:video_game_flutter_project/widgets/bottom_navigation_bar_items.dart';
 
 class HomePageScreen extends StatefulWidget {
   final String title;
@@ -38,25 +39,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 50.0,
-        color: Colors.black87,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Icon(
-              Icons.home,
-              color: Colors.white,
-              size: 30,
-            ),
-            Icon(
-              Icons.favorite,
-              color: Colors.white,
-              size: 30,
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: BottomNavigationBarItems(homePageButtonOntap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePageScreen()),
+        );
+      }),
     );
   }
 }
