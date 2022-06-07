@@ -44,7 +44,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   }
 
   onSearch(String searchValue) {
-    if (searchValue.isNotEmpty) {
+    if (searchValue.isNotEmpty && searchValue.length > 3) {
       setState(() {
         foundGamesList = videoGamesList.where((games) {
           final name = games['name'].toString().toLowerCase();
@@ -54,7 +54,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
         this.query = searchValue;
         return foundGamesList;
       });
-    } else {
+    } else if (searchValue.isEmpty) {
       setState(() {
         return foundGamesList.clear();
       });
