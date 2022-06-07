@@ -117,10 +117,7 @@ class _GameDetailScreenState extends State<GameDetailScreen> {
               ),
             ),
             bottomNavigationBar: BottomNavigationBarItems(homePageButtonOntap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomePageScreen()),
-              );
+              Navigator.of(context).pop();
             }),
           );
   }
