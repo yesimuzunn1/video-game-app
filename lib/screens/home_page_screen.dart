@@ -1,4 +1,5 @@
 //Packages
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //Styles
 import 'package:video_game_flutter_project/styles/styles.text.dart';
@@ -56,6 +57,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
       });
     } else if (searchValue.isEmpty) {
       setState(() {
+        this.query = searchValue;
         return foundGamesList.clear();
       });
     }
@@ -71,34 +73,42 @@ class _HomePageScreenState extends State<HomePageScreen> {
           onSearch(value);
         },
       )),
-      body: SingleChildScrollView(
-        physics: ScrollPhysics(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Container(
-                height: 300,
-                width: 400,
-                color: Colors.black,
-                child: Center(child: Text('IMG', style: mediumTextStyle(Colors.white))),
-              ),
-            ),
-            Visibility(
-              visible: isLoaded,
-              replacement: Center(
-                child: CircularProgressIndicator(),
-              ),
-              child: ListViewOfGames(
-                videoGames: foundGamesList == null || foundGamesList.isEmpty ? videoGamesList : foundGamesList,
-                isLoaded: isLoaded,
+      body: (foundGamesList == null || foundGamesList.isEmpty) && (this.query.length > 3)
+          ? AlertDialog(
+              elevation: 20,
+              title: Text(
+                "Üzgünüz, aradığınız oyun bulunamadı!",
+                style: boldTextStyle(Colors.redAccent),
               ),
             )
-          ],
-        ),
-      ),
+          : SingleChildScrollView(
+              physics: ScrollPhysics(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Container(
+                      height: 300,
+                      width: 400,
+                      color: Colors.black,
+                      child: Center(child: Text('IMG', style: mediumTextStyle(Colors.white))),
+                    ),
+                  ),
+                  Visibility(
+                    visible: isLoaded,
+                    replacement: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    child: ListViewOfGames(
+                      videoGames: foundGamesList == null || foundGamesList.isEmpty ? videoGamesList : foundGamesList,
+                      isLoaded: isLoaded,
+                    ),
+                  )
+                ],
+              ),
+            ),
       bottomNavigationBar: BottomNavigationBarItems(homePageButtonOntap: () {}),
     );
   }
