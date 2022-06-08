@@ -1,6 +1,7 @@
 //Packages
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 //Styles
 import 'package:video_game_flutter_project/styles/styles.text.dart';
 //Widgets
@@ -87,20 +88,46 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Container(
-                      height: 300,
-                      width: 400,
-                      color: Colors.black,
-                      child: Center(
-                        child: Text(
-                          'IMG',
-                          style: mediumTextStyle(Colors.white),
+                  videoGamesList == null
+                      ? Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Container(
+                            height: 200,
+                            width: 400,
+                            color: Colors.black,
+                            child: Center(child: CircularProgressIndicator()),
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            child: CarouselSlider(
+                              options: CarouselOptions(
+                                aspectRatio: 22 / 9,
+                                autoPlay: false,
+                              ),
+                              items: [
+                                Image.network(videoGamesList[0]['background_image']),
+                                Image.network(videoGamesList[1]['background_image']),
+                                Image.network(videoGamesList[2]['background_image']),
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(20.0),
+                  //   child: Container(
+                  //     height: 300,
+                  //     width: 400,
+                  //     color: Colors.black,
+                  //     child: Center(
+                  //       child: Text(
+                  //         'IMG',
+                  //         style: mediumTextStyle(Colors.white),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   Visibility(
                     visible: isLoaded,
                     replacement: Center(
