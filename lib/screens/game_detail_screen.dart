@@ -45,7 +45,14 @@ class _GameDetailScreenState extends State<GameDetailScreen> {
                   SliverAppBar(
                     backgroundColor: Colors.black87,
                     automaticallyImplyLeading: false,
-                    leading: InkWell(onTap: () => Navigator.of(context).pop(), child: Icon(Icons.arrow_back)),
+                    leading: InkWell(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: Icon(
+                        Icons.arrow_back,
+                        color: Colors.black87,
+                        size: 32.0,
+                      ),
+                    ),
                     expandedHeight: 200,
                     floating: true,
                     pinned: true,

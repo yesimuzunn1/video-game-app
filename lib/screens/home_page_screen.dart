@@ -11,9 +11,6 @@ import 'package:video_game_flutter_project/widgets/bottom_navigation_bar_items.d
 import 'package:video_game_flutter_project/server/api/games_api.dart';
 
 class HomePageScreen extends StatefulWidget {
-  final String title;
-
-  const HomePageScreen({Key key, this.title}) : super(key: key);
   @override
   State<HomePageScreen> createState() => _HomePageScreenState();
 }
@@ -22,14 +19,13 @@ class _HomePageScreenState extends State<HomePageScreen> {
   List videoGamesList;
   List foundGamesList;
   String query = '';
-
   var isLoaded = false;
 
   @override
   void initState() {
     getData();
-
     super.initState();
+
     setState(() {
       foundGamesList = videoGamesList;
     });
@@ -37,6 +33,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
 
   getData() async {
     videoGamesList = await GamesApi().getGamesList();
+
     if (videoGamesList != null) {
       setState(() {
         isLoaded = true;
@@ -52,7 +49,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
           final searchLower = searchValue.toLowerCase();
           return name.contains(searchLower);
         }).toList();
+
         this.query = searchValue;
+
         return foundGamesList;
       });
     } else if (searchValue.isEmpty) {
@@ -67,12 +66,13 @@ class _HomePageScreenState extends State<HomePageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: SearchBar(
-        videoGames: foundGamesList,
-        onSearch: (value) {
-          onSearch(value);
-        },
-      )),
+        title: SearchBar(
+          videoGames: foundGamesList,
+          onSearch: (value) {
+            onSearch(value);
+          },
+        ),
+      ),
       body: (foundGamesList == null || foundGamesList.isEmpty) && (this.query.length > 3)
           ? AlertDialog(
               elevation: 20,
@@ -93,7 +93,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       height: 300,
                       width: 400,
                       color: Colors.black,
-                      child: Center(child: Text('IMG', style: mediumTextStyle(Colors.white))),
+                      child: Center(
+                        child: Text(
+                          'IMG',
+                          style: mediumTextStyle(Colors.white),
+                        ),
+                      ),
                     ),
                   ),
                   Visibility(

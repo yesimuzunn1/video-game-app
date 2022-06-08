@@ -6,18 +6,14 @@ import 'package:video_game_flutter_project/styles/styles.text.dart';
 import 'package:video_game_flutter_project/screens/game_detail_screen.dart';
 
 class ListViewOfGames extends StatefulWidget {
-  final int itemCount;
-  final String name;
   final List videoGames;
   final bool isLoaded;
 
-  const ListViewOfGames({Key key, this.itemCount, this.name, this.videoGames, this.isLoaded}) : super(key: key);
+  const ListViewOfGames({Key key, this.videoGames, this.isLoaded}) : super(key: key);
 
   @override
   _ListViewOfGamesState createState() => _ListViewOfGamesState();
 }
-
-// List videoGamesList;
 
 class _ListViewOfGamesState extends State<ListViewOfGames> {
   @override
@@ -37,9 +33,10 @@ class _ListViewOfGamesState extends State<ListViewOfGames> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => GameDetailScreen(
-                          id: widget.videoGames[index]['id'].toString(),
-                        )),
+                  builder: (context) => GameDetailScreen(
+                    id: widget.videoGames[index]['id'].toString(),
+                  ),
+                ),
               );
             },
             child: Padding(
