@@ -40,6 +40,12 @@ class _SearchBarState extends State<SearchBar> {
             size: 28,
           ),
         ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.redAccent),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.redAccent),
+        ),
       ),
     );
   }
