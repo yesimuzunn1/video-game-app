@@ -102,14 +102,23 @@ class _HomePageScreenState extends State<HomePageScreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             child: CarouselSlider(
-                              options: CarouselOptions(
-                                aspectRatio: 22 / 9,
-                                autoPlay: false,
-                              ),
+                              options: CarouselOptions(enlargeCenterPage: false, aspectRatio: 2.5, autoPlay: false, reverse: false),
                               items: [
-                                Image.network(videoGamesList[0]['background_image']),
-                                Image.network(videoGamesList[1]['background_image']),
-                                Image.network(videoGamesList[2]['background_image']),
+                                ClipRRect(
+                                    child: Image.network(
+                                  videoGamesList[0]['background_image'],
+                                  fit: BoxFit.cover,
+                                )),
+                                ClipRRect(
+                                    child: Image.network(
+                                  videoGamesList[1]['background_image'],
+                                  fit: BoxFit.cover,
+                                )),
+                                ClipRRect(
+                                    child: Image.network(
+                                  videoGamesList[2]['background_image'],
+                                  fit: BoxFit.cover,
+                                )),
                               ],
                             ),
                           ),
