@@ -1,4 +1,6 @@
+//Packages
 import 'package:flutter/material.dart';
+//Screens
 import 'package:video_game_flutter_project/screens/home_page_screen.dart';
 
 void main() {
