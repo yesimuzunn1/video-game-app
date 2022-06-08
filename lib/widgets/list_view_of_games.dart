@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:video_game_flutter_project/styles/styles.text.dart';
 //Screens
 import 'package:video_game_flutter_project/screens/game_detail_screen.dart';
+//Widgets
+import 'package:video_game_flutter_project/widgets/screen_divider.dart';
 
 class ListViewOfGames extends StatefulWidget {
   final List videoGames;
@@ -39,39 +41,45 @@ class _ListViewOfGamesState extends State<ListViewOfGames> {
                 ),
               );
             },
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20.0, bottom: 10.0),
-              child: Row(
-                children: [
-                  Container(
-                    height: 70,
-                    width: 70,
-                    child: Center(
-                      child: Image.network(
-                        widget.videoGames[index]['background_image'],
-                        fit: BoxFit.cover,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0, bottom: 10.0),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 70,
+                        width: 70,
+                        child: Center(
+                          child: Image.network(
+                            widget.videoGames[index]['background_image'],
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget.videoGames[index]['name'],
-                          style: mediumTextStyle(Colors.black87, fontSize: 22.0),
+                      SizedBox(width: 20),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.videoGames[index]['name'],
+                              style: mediumTextStyle(Colors.black87, fontSize: 22.0),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(height: 4),
+                            Text(
+                              widget.videoGames[index]['rating'].toString() + " - " + widget.videoGames[index]['released'].toString(),
+                              style: mediumTextStyle(Colors.black87, fontSize: 22.0),
+                            ),
+                          ],
                         ),
-                        SizedBox(height: 4),
-                        Text(
-                          widget.videoGames[index]['rating'].toString() + " - " + widget.videoGames[index]['released'].toString(),
-                          style: mediumTextStyle(Colors.black87, fontSize: 22.0),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                ScreenDivider()
+              ],
             ),
           );
         },
