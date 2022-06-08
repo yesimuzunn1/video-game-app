@@ -44,9 +44,8 @@ class _ListViewOfGamesState extends State<ListViewOfGames> {
               child: Row(
                 children: [
                   Container(
-                    height: 60,
-                    width: 60,
-                    color: Colors.black,
+                    height: 70,
+                    width: 70,
                     child: Center(
                       child: Image.network(
                         widget.videoGames[index]['background_image'],
@@ -55,19 +54,21 @@ class _ListViewOfGamesState extends State<ListViewOfGames> {
                     ),
                   ),
                   SizedBox(width: 20),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.videoGames[index]['name'],
-                        style: mediumTextStyle(Colors.black87, fontSize: 22.0),
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        widget.videoGames[index]['rating'].toString() + " - " + widget.videoGames[index]['released'].toString(),
-                        style: mediumTextStyle(Colors.black87, fontSize: 22.0),
-                      ),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.videoGames[index]['name'],
+                          style: mediumTextStyle(Colors.black87, fontSize: 22.0),
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          widget.videoGames[index]['rating'].toString() + " - " + widget.videoGames[index]['released'].toString(),
+                          style: mediumTextStyle(Colors.black87, fontSize: 22.0),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
