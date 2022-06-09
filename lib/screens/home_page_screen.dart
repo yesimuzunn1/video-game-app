@@ -114,7 +114,14 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 ],
               ),
             ),
-      bottomNavigationBar: BottomNavigationBarItems(homePageButtonOntap: () {}),
+      bottomNavigationBar: BottomNavigationBarItems(homePageButtonOntap: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePageScreen(),
+          ),
+        );
+      }),
     );
   }
 }
