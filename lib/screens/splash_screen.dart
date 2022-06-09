@@ -13,20 +13,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      backgroundColor: Colors.blueAccent.withOpacity(0.5),
+      backgroundColor: Colors.black87,
       splashTransition: SplashTransition.fadeTransition,
       duration: 3000,
       splash: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.network(
-            'https://cdn-icons-png.flaticon.com/512/5260/5260498.png',
-            width: 70,
-            height: 70,
-          ),
-        ],
+          child: Image.network(
+        'https://cdn-icons-png.flaticon.com/512/742/742263.png',
       )),
       nextScreen: HomePageScreen(),
     );
